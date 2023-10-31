@@ -38,3 +38,41 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+```
+whats-eating-front
+├─ .gitignore
+├─ next.config.js
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.js
+├─ public
+│  ├─ favicon.ico
+│  ├─ fonts
+│  │  ├─ SOYO-Maple.otf
+│  │  ├─ SOYO-Maple.ttf
+│  │  ├─ SOYO-Maple.woff
+│  │  └─ SOYO-Maple.woff2
+│  └─ logo.svg
+├─ src
+│  ├─ components
+│  │  ├─ Button.tsx
+│  │  ├─ Input.tsx
+│  │  ├─ Layouts
+│  │  │  └─ Header.tsx
+│  │  └─ Logo.tsx
+│  ├─ pages
+│  │  ├─ auth
+│  │  │  ├─ login.tsx
+│  │  │  └─ register.tsx
+│  │  ├─ index.tsx
+│  │  ├─ _app.tsx
+│  │  └─ _document.tsx
+│  ├─ styles
+│  │  └─ globals.css
+│  └─ utils
+│     └─ utils.ts
+├─ tailwind.config.ts
+└─ tsconfig.json
+
+```

@@ -22,16 +22,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
         buttonDisabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
         ...[
           variant === "primary" && [
-            "bg-primary-500 hover:bg-primary-600 text-white",
-            "focus:ring-primary-500 focus:ring-offset-primary-200 focus:ring-2 focus:ring-offset-2",
+            "bg-primary-500 hover:bg-primary-600 text-black ring-0",
           ],
           variant === "danger" && [
-            "bg-red-500 hover:bg-red-600 text-white",
-            "focus:ring-red-500 focus:ring-offset-red-200 focus:ring-2 focus:ring-offset-2",
+            "bg-red-500 hover:bg-red-600 text-white ring-0",
           ],
           variant === "outline" && [
-            "border border-gray-500 hover:border-gray-600 text-gray-500",
-            "focus:ring-gray-500 focus:ring-offset-gray-200 focus:ring-2 focus:ring-offset-2",
+            "border border-gray-500 hover:border-gray-600 hover:bg-gray-100 text-black ring-0",
           ],
         ],
         "rounded-md px-2 py-1 border"

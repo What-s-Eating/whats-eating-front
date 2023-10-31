@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Logo from "@/../public/logo.svg";
-import Button from "../Button";
+import Link from "next/link";
 
 const Header = () => {
   return (
-    <div className="bg-white border-b">
+    <div className="bg-white border-b fixed top-0 w-full z-10">
       <div className="flex flex-row items-center py-3 max-w-screen-2xl mx-auto px-5">
-        <div className="flex flex-row items-center justify-center mr-auto">
+        <Link
+          href="/"
+          className="flex flex-row items-center justify-center mr-auto"
+        >
           <Image
             src={Logo}
             alt="logo"
@@ -22,11 +25,14 @@ const Header = () => {
           >
             뭐 먹으러가?
           </span>
-        </div>
+        </Link>
         <div className="flex flex-row">
-          <Button variant="primary" className="mx-auto">
-            asd
-          </Button>
+          <Link
+            href="/auth/login"
+            className="mx-auto text-lg px-3 border border-gray-500 hover:border-gray-600 hover:bg-gray-100 text-black ring-0 rounded-md py-1"
+          >
+            로그인
+          </Link>
         </div>
       </div>
     </div>
