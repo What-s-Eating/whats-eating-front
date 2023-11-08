@@ -36,6 +36,17 @@ const Login = () => {
               <Button variant="primary" className="w-full text-lg h-12 mt-6">
                 로그인
               </Button>
+
+              <button className="w-full bg-[#FEE500] h-10 rounded-lg flex items-center justify-center relative mt-10">
+                <img
+                  src="/icons/kakao-login-symbol.png"
+                  alt="kakao"
+                  className="w-5 h-5 absolute left-4"
+                />
+                <span className="text-black text-sm font-bold text-center">
+                  카카오로 로그인
+                </span>
+              </button>
             </div>
           </div>
           <div className="flex flex-row">
