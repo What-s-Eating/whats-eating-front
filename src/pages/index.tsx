@@ -71,7 +71,7 @@ export default function Home() {
               }}
               className="bg-white border border-gray-300 rounded-lg w-fit h-fit py-1 px-3 text-base font-medium relative"
             >
-              <div className="text-sm font-bold">{marker.place_name}</div>
+              <div className="text-sm font-medium">{marker.place_name}</div>
 
               {/* bottom arrow */}
               <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6">
