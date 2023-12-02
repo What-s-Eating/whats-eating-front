@@ -18,7 +18,7 @@ export default function Home() {
   const [markers, setMarkers] = useState<Place[]>([]);
   const updateCenter = debounce((map: kakao.maps.Map) => {
     setCenter(map.getCenter());
-  }, 500);
+  }, 1000);
 
   const getLocation = () => {
     if (navigator.geolocation) {
