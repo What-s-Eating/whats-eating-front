@@ -1,14 +1,13 @@
 import Header from "@/components/Layouts/Header";
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { Nanum_Gothic } from "next/font/google";
+import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
+import { nanumGothic } from "@/utils/fonts";
+import { SessionProvider } from "next-auth/react";
 
-const NanumGothic = Nanum_Gothic({
-  weight: ["400", "700", "800"],
-  preload: false,
-  subsets: ["latin"],
-});
+import "swiper/css";
+import "react-toastify/dist/ReactToastify.css";
+import "@/styles/globals.css";
 
 const HeaderExcludePaths = ["/auth/login", "/auth/register"];
 
@@ -16,9 +15,12 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
-    <main className={NanumGothic.className}>
-      {!HeaderExcludePaths.includes(router.pathname) && <Header />}
-      <Component {...pageProps} />
-    </main>
+    <SessionProvider>
+      <main className={nanumGothic.className}>
+        {!HeaderExcludePaths.includes(router.pathname) && <Header />}
+        <Component {...pageProps} />
+      </main>
+      <ToastContainer limit={3} position="bottom-center" />
+    </SessionProvider>
   );
 }

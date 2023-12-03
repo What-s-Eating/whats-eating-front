@@ -14,7 +14,7 @@ export default function Document() {
         <Main />
         <NextScript />
         <Script
-          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca3dbc4079f589287989b06fe15da044&libraries=services,clusterer&autoload=false"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca3dbc4079f589287989b06fe15da044&libraries=services,clusterer&autoload=false&libraries=services"
           strategy="beforeInteractive"
         />
       </body>

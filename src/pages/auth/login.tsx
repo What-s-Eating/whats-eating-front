@@ -3,8 +3,33 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/components/Logo";
 import Button from "@/components/Button";
+import { signIn, useSession } from "next-auth/react";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const router = useRouter();
+  const { data: session, update: updateSession } = useSession();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const handleLogin = async () => {
+    await signIn("credentials", {
+      redirect: false,
+      email: email,
+      password: password,
+    }).then(async res => {
+      if (res?.ok) {
+        const session = await updateSession();
+        router.push((router.query.redirect as string) || "/");
+      } else {
+        toast.error("로그인에 실패했습니다.");
+      }
+    });
+  };
+
   return (
     <>
       <div className="h-[100vh]">
@@ -23,6 +48,9 @@ const Login = () => {
                 <Input
                   variant="primary"
                   className="mx-auto w-full pl-10 rounded-br-none rounded-bl-none h-10"
+                  onChange={e => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </div>
               <div className="relative w-full">
@@ -30,14 +58,27 @@ const Login = () => {
                 <Input
                   variant="primary"
                   className="mx-auto w-full pl-10 rounded-tr-none rounded-tl-none h-10"
+                  type={showPassword ? "text" : "password"}
+                  onChange={e => {
+                    setPassword(e.target.value);
+                  }}
                 />
-                <i className="fas fa-eye-slash text-sm absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-700" />
+                <i
+                  className="fas fa-eye-slash text-sm absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-700"
+                  onClick={() => {
+                    setShowPassword(!showPassword);
+                  }}
+                />
               </div>
-              <Button variant="primary" className="w-full text-lg h-12 mt-6">
+              <Button
+                variant="primary"
+                className="w-full text-lg h-12 mt-6"
+                onClick={handleLogin}
+              >
                 로그인
               </Button>
 
-              <button className="w-full bg-[#FEE500] h-10 rounded-lg flex items-center justify-center relative mt-10">
+              {/* <button className="w-full bg-[#FEE500] h-10 rounded-lg flex items-center justify-center relative mt-10">
                 <img
                   src="/icons/kakao-login-symbol.png"
                   alt="kakao"
@@ -46,7 +87,7 @@ const Login = () => {
                 <span className="text-black text-sm font-bold text-center">
                   카카오로 로그인
                 </span>
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="flex flex-row">
