@@ -292,31 +292,42 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     data: Comment[];
   };
 
-  const comments: Comment[] = place.data.result.comment.list.map(comment => {
-    return {
-      id: comment.commentid,
-      userId: comment.kakaoMapUserId,
-      userName: comment.username,
-      date: comment.date,
-      star: comment.point,
-      content: comment.contents,
-      platform: "kakao",
-    } as unknown as Comment;
-  });
-  comments.push(...reviews.data);
-
   if (!place.data.result) {
     return {
       notFound: true,
     };
   }
 
-  return {
-    props: {
-      place: place.data.result,
-      comments: comments,
-    },
-  };
+  if (place.data.result.comment.list) {
+    const comments: Comment[] = place.data.result.comment.list.map(comment => {
+      return {
+        id: comment.commentid,
+        userId: comment.kakaoMapUserId,
+        userName: comment.username,
+        date: comment.date,
+        star: comment.point,
+        content: comment.contents,
+        platform: "kakao",
+      } as unknown as Comment;
+    });
+    comments.push(...reviews.data);
+
+    return {
+      props: {
+        place: place.data.result,
+        comments: comments,
+      },
+    };
+  } else {
+    const comments: Comment[] = reviews.data;
+
+    return {
+      props: {
+        place: place.data.result,
+        comments: comments,
+      },
+    };
+  }
 };
 
 export default PlaceDetailPage;
