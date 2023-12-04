@@ -298,7 +298,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     };
   }
 
-  if (place.data.result.comment.list) {
+  if (place.data.result.comment) {
     const comments: Comment[] = place.data.result.comment.list.map(comment => {
       return {
         id: comment.commentid,
