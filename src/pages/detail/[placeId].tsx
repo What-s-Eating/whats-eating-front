@@ -12,6 +12,7 @@ import { Nanum_Gothic } from "next/font/google";
 import { nanumGothic } from "@/utils/fonts";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const PlaceDetailPage: NextPage<{
   place: PlaceDetail;
@@ -41,8 +42,8 @@ const PlaceDetailPage: NextPage<{
       );
 
       router.reload();
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      toast(e.response.data.message || e.message);
     } finally {
       setIsCommenting(false);
     }
