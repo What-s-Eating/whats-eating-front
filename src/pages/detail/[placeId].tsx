@@ -27,6 +27,21 @@ const PlaceDetailPage: NextPage<{
   const postComment = async () => {
     setIsCommenting(true);
 
+    if (!session) {
+      toast("로그인이 필요합니다.");
+      return;
+    }
+
+    if (star === 0) {
+      toast("별점을 입력해주세요.");
+      return;
+    }
+
+    if (comment.length === 0) {
+      toast("댓글을 입력해주세요.");
+      return;
+    }
+
     try {
       await Client.post(
         `/place/${place.basicInfo.cid}/reviews`,
@@ -41,7 +56,7 @@ const PlaceDetailPage: NextPage<{
         }
       );
 
-      router.reload();
+      router.replace(router.asPath);
     } catch (e: any) {
       toast(e.response.data.message || e.message);
     } finally {
