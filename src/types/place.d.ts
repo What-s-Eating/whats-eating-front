@@ -243,7 +243,7 @@ export interface PhotoList2 {
   near: boolean;
 }
 
-export interface OwnerReply {}
+export interface OwnerReply { }
 
 export interface Strength {
   id: number;
