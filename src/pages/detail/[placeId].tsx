@@ -1,4 +1,4 @@
-import { Comment, PlaceDetail } from "@/types/place";
+import { Comment, Photo, PlaceDetail } from "@/types/place";
 import { Client, SearchClient } from "@/utils/fetcher";
 import { GetServerSideProps, NextPage } from "next";
 import { useEffect, useState } from "react";
@@ -78,7 +78,11 @@ const PlaceDetailPage: NextPage<{
           </span>
         </div>
         <PlaceImageSlider
-          images={place.photo.photoList[0].list.map(photo => photo.orgurl)}
+          images={
+            place.photo.photoList
+              ? place.photo.photoList[0].list.map(photo => photo.orgurl)
+              : ["/logo.svg"]
+          }
         />
         <div className="flex flex-row w-full pt-5">
           <div className="flex flex-col w-full border p-5 rounded-[20px] space-y-1.5">
@@ -126,7 +130,7 @@ const PlaceDetailPage: NextPage<{
             </div>
           </div>
         </div>
-        {place.menuInfo && (
+        {place.menuInfo.menuList && (
           <div className="flex flex-col mt-5">
             <span className="text-xl font-bold ml-1">메뉴</span>
             <div className="flex flex-col w-full border p-5 rounded-[20px] space-y-1.5 mt-2">
